@@ -285,6 +285,12 @@ func TestContextGetStringSlice(t *testing.T) {
 	assert.Equal(t, []string{"foo"}, c.GetStringSlice("slice"))
 }
 
+func TestContextGetAs(t *testing.T) {
+	c, _ := CreateTestContext(httptest.NewRecorder())
+	c.Set("generic", "Value" )
+	assert.Equal(t, "Value", c.GetAs[string]("generic"))
+}
+
 func TestContextGetStringMap(t *testing.T) {
 	c, _ := CreateTestContext(httptest.NewRecorder())
 	m := make(map[string]any)
